@@ -14,6 +14,12 @@
     "type": "git",
     "url": "git+https://github.com/ch1bug/dsh-handoff.git"
   },
+  "scripts": {
+    "test": "node scripts/verify-all.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
   "files": [
     "package.json",
     "*.mjs",
