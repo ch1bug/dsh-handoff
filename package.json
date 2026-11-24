@@ -1,0 +1,28 @@
+{
+  "name": "@ch1bug/dsh-handoff",
+  "version": "0.0.0",
+  "description": "DSH handoff capability: assemble and execute handoffs. Policy and templates belong to the consuming project.",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "handoff"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ch1bug/dsh-handoff.git"
+  },
+  "files": [
+    "package.json",
+    "*.mjs",
+    "lib",
+    "LICENSE",
+    "README.md"
+  ],
+  "exports": {
+    "./*": "./*",
+    "./package.json": "./package.json"
+  }
+}
