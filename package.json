@@ -1,9 +1,10 @@
 {
   "name": "@ch1bug/dsh-handoff",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "DSH handoff capability: assemble and execute handoffs. Policy and templates belong to the consuming project.",
   "type": "module",
   "license": "MIT",
+  "main": "./lib/handoff-document.mjs",
   "keywords": [
     "dsh",
     "dsh-plugin",
@@ -20,6 +21,9 @@
   "engines": {
     "node": ">=22"
   },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.1.0"
+  },
   "files": [
     "package.json",
     "*.mjs",
@@ -28,6 +32,8 @@
     "README.md"
   ],
   "exports": {
+    ".": "./lib/handoff-document.mjs",
+    "./handoff-tool.mjs": "./handoff-tool.mjs",
     "./*": "./*",
     "./package.json": "./package.json"
   }

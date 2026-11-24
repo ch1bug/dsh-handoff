@@ -4,7 +4,8 @@ DSH 的 **handoff 能力**：把「事实 + 模板文本」组装成交接文档
 （起子会话 / 首 turn）。**策略不在这里** —— 什么时候交接、状态源是什么、模板长什么样、
 必需哪些节，全部由**消费方项目**决定。
 
-状态：pre-alpha（决策已定，实现待第一跳）。
+状态：pre-alpha —— **第一跳已实现**（核心库 + 薄 tool 适配器，`0.0.1`）；执行面（fresh/fork、
+侧边栏、首 turn）属第二跳。
 
 ## 边界（能力 vs 策略）
 
@@ -27,10 +28,15 @@ DSH 的 **handoff 能力**：把「事实 + 模板文本」组装成交接文档
     `section-missing`（模板引用了 facts 没有的节，消息点名）/ `document-empty`；
   - 事实文本**不做二次插值**（一次性替换，防注入）。
 - **薄 tool**：模型面名字 `handoff_tool`；参数 `facts` + `templateText` 或
-  `templatePath` 二选一（插件 config 可给 `templatePath` 作默认，args 覆盖）。
-  失败面另加：`template-source-ambiguous` / `template-source-missing` /
+  `templatePath` **恰一个**（**没有隐式默认**：插件 config 也不提供模板源，避免绕过二选一契约）。
+  失败面（`TOOL_ERRORS`）：`template-source-ambiguous` / `template-source-missing` /
   `template-missing`（点名路径）/ `template-encoding`（非 UTF-8）/ `template-unreadable`。
+- **错误码单一事实源**：库侧 `HANDOFF_ERRORS`、适配器侧 `TOOL_ERRORS`，消费方与守卫从这里取，
+  不在别处抄裸串。
+- **运行时 peer 锚**：`peerDependencies: { "@deepseek-ai/cordis": "^4.1.0" }`（插件行挂进 cordis 宿主）。
 - **执行面**（fresh/fork、侧边栏、首 turn）：**第二跳**，第一跳不提供。
+
+`docs/`（含 ADR）**不进 npm 包**：`files` 白名单只含 `lib/`、根级 `*.mjs`、README 与 LICENSE。
 
 详细决策见 `docs/adr/0001-handoff-capability.md`。
 
